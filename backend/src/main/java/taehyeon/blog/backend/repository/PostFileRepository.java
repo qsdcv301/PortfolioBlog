@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PostFileRepository extends JpaRepository<PostFile, Long> {
     List<PostFile> findAllByNTime(Long nTime);
+    void deleteAllByNTime(Long nTime);
 }

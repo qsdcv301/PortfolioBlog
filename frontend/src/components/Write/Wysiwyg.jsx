@@ -18,7 +18,7 @@ const Wysiwyg = ({ content, setContent, ntime }) => {
       try {
         //1.formData 생성
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("files", file);
         formData.append("ntime", ntime);
 
         //2.서버로 이미지 업로드
