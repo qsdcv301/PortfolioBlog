@@ -23,7 +23,7 @@ const Wysiwyg = ({ content, setContent, ntime }) => {
 
         //2.서버로 이미지 업로드
         const response = await axios.post(
-          `http://localhost:8080/api/posts/${ntime}/files`,
+          `http://localhost:8080/api/posts/files`,
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

@@ -35,7 +35,7 @@ public class PostFileController {
         try {
             // 파일명 및 확장자 분리
             String originalFilename = file.getOriginalFilename();
-            String ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            String ext = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
 
             // 이미지인지 일반 파일인지 확인
             boolean isImg = FileUtils.ALLOWED_IMAGE_EXT.contains(ext);
