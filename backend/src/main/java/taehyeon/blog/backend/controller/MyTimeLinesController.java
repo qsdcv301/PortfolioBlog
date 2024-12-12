@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import taehyeon.blog.backend.entity.MyTimeLines;
-import taehyeon.blog.backend.service.MyTimeLineService;
+import taehyeon.blog.backend.service.MyTimeLineServiceImpl;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import java.util.List;
 @RequestMapping("/api/mytimelines")
 public class MyTimeLinesController {
 
-    private final MyTimeLineService myTimeLineService;
+    private final MyTimeLineServiceImpl myTimeLineServiceImpl;
 
     @GetMapping
     public ResponseEntity<List<MyTimeLines>> getAllMySkills(){
-        List<MyTimeLines> myTimeLines = myTimeLineService.getAllMyTimeLines();
+        List<MyTimeLines> myTimeLines = myTimeLineServiceImpl.getAllMyTimeLines();
         return ResponseEntity.ok(myTimeLines);
     }
 
