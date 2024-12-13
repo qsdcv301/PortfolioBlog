@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.1.0",
     "react-router-dom": "^7.0.1"
   },
   "proxy": "http://localhost:8080"

@@ -15,8 +15,8 @@ public class PostFileServiceImpl implements PostFileService {
     private final PostFileRepository postFileRepository;
 
     @Override
-    public List<PostFile> getFilesByNTime(Long nTime) {
-        return postFileRepository.findAllByNTime(nTime);
+    public List<PostFile> getFilesByNtime(Long ntime) {
+        return postFileRepository.findAllByNtime(ntime);
     }
 
     @Override
@@ -35,8 +35,13 @@ public class PostFileServiceImpl implements PostFileService {
     }
 
     @Override
-    public void deleteAllByNTime(long nTime){
-        postFileRepository.deleteAllByNTime(nTime);
+    public void deleteAllByNtime(long ntime){
+        postFileRepository.deleteAllByNtime(ntime);
+    }
+
+    @Override
+    public Optional<PostFile> findFirstImageByNtime(Long ntime) {
+        return postFileRepository.findFirstImageByNtime(ntime);
     }
 
 }

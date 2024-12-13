@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface PostFileService {
 
-    List<PostFile> getFilesByNTime(Long nTime);
+    List<PostFile> getFilesByNtime(Long ntime);
 
     PostFile saveFile(PostFile postFile);
 
@@ -15,5 +15,7 @@ public interface PostFileService {
 
     void deleteFileById(Long id);
 
-    void deleteAllByNTime(long nTime);
+    void deleteAllByNtime(long ntime);
+
+    Optional<PostFile> findFirstImageByNtime(Long ntime);
 }

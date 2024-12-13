@@ -44,4 +44,7 @@ public class Post {
     @Column
     private Long ntime;
 
+    @Transient
+    private String firstImg;
+
 }

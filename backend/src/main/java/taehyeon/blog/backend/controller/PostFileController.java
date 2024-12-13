@@ -57,11 +57,11 @@ public class PostFileController {
 
             // db저장
             PostFile postFile = new PostFile();
-            postFile.setNTime(nTime);
-            postFile.setNFileName(newFileName);
-            postFile.setOFileName(originalFilename);
+            postFile.setNtime(nTime);
+            postFile.setNfilename(newFileName);
+            postFile.setOfilename(originalFilename);
             postFile.setExt(ext);
-            postFile.setFSize(file.getSize());
+            postFile.setFsize(file.getSize());
 
             postFileService.saveFile(postFile);
 

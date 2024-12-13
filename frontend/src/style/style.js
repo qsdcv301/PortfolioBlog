@@ -8,4 +8,8 @@ const padding16 = {
   padding: "1.6rem",
 };
 
-export { boxShadow, padding16 };
+const borders = {
+  borderRadius: "0.4rem",
+};
+
+export { boxShadow, padding16, borders };

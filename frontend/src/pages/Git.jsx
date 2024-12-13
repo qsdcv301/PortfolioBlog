@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 import axios from "axios";
+import api from "../components/git";
 
 const Git = () => {
   const [repo, setRepo] = useState([]);
@@ -13,10 +14,8 @@ const Git = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(
-        "https://api.github.com/users/qsdcv301/repos"
-      );
-      //console.dir(res.data);
+      const res = await api.get("/users/qsdcv301/repos");
+      console.dir(res.data);
       setRepo(res.data);
 
       //언어목록 추출

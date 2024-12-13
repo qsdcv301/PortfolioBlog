@@ -13,18 +13,18 @@ public class PostFile {
     private Long id;
 
     @Column(name = "ntime")
-    private Long nTime;
+    private Long ntime;
 
     @Column(name = "nfilename")
-    private String nFileName;
+    private String nfilename;
 
     @Column(name = "ofilename")
-    private String oFileName;
+    private String ofilename;
 
     @Column(length = 5)
     private String ext;
 
     @Column(name = "fsize")
-    private Long fSize;
+    private Long fsize;
 
 }

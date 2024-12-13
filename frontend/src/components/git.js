@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+console.log("github token:" + GITHUB_TOKEN);
 const api = axios.create({
-  baseURL: "https://api/github.com",
+  baseURL: "https://api.github.com",
   headers: {
-    Authorization: "Bearer 토큰",
+    Authorization: `Bearer ${GITHUB_TOKEN}`,
     Accept: "application/vnd.github+json",
   },
 });
