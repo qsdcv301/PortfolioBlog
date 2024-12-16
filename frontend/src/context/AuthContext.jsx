@@ -1,23 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-//AuthContext 생성
-
+//AuthCOntext 생성
 const AuthContext = createContext(null);
 
 //AuthProvider 구현
-const AuthProvider = ({ childern }) => {
-  const [userAuth, setUserAuth] = useState(null); //사용자 정보
+const AuthProvider = ({ children }) => {
+  const [userAuth, setUserAuth] = useState("홍길동"); //사용자 정보
   const [isLogged, setIsLogged] = useState(null); //로그인 상태
-  const [role, setRole] = useState("guest"); //권한 guest, user, admin
+  const [role, setRole] = useState("guest"); //권한- guest, user, admin
 
   //로그인 상태 구현
   useEffect(() => {
     const storedUser = localStorage.getItem("userAuth");
     if (storedUser) {
-      const paraseUser = JSON.parse(storedUser);
-      setUserAuth(paraseUser);
+      const parasedUser = JSON.parse(storedUser);
+      setUserAuth(parasedUser);
       setIsLogged(true);
-      setRole(paraseUser.email === "qsdcv301@naver.com" ? "admin" : "user");
+      setRole(parasedUser.email === "qsdcv301@naver.com" ? "admin" : "user"); //관리자 권한 부여
     }
   }, []);
 
@@ -34,6 +33,17 @@ const AuthProvider = ({ childern }) => {
     setRole("guest");
     localStorage.removeItem("userAuth");
   };
-  return <AuthContext></AuthContext>;
+
+  return (
+    <AuthContext.Provider value={{ userAuth, isLogged, role, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
-export default AuthContext;
+
+//cutom hook
+const useAuthValue = () => {
+  return useContext(AuthContext);
+};
+
+export { AuthProvider, useAuthValue };

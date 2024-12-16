@@ -30,7 +30,7 @@ const Top = () => {
     <header className={`navigation ${isScrolled ? "scrolled" : ""}`}>
         <Navbar expand="lg" className="bg-transparent">
             <Container>
-                <Navbar.Brand as={Link} to="/"><img src="./images/logo.svg" className="img-logo" /></Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><img src="/images/logo.svg" className="img-logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="m-auto">
                     <Nav className="me-md-5 me-auto"> 
@@ -42,7 +42,7 @@ const Top = () => {
                            onMouseLeave={handleMouseLeave}
                            className={showDropdown?'dropv':''}
                         >
-                            <NavDropdown.Item as={Link} to="post/여행">Action</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="post">All</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="post/스포츠">
                                 Another action
                             </NavDropdown.Item>
