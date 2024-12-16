@@ -400,7 +400,7 @@ a.repobox {
   border-radius: 5px;
 }
 
-/* post */
+/**** post *********/
 .post-img,
 .post-img2 {
   width: 100%;
@@ -412,9 +412,26 @@ a.repobox {
 .post-img {
   height: 350px;
 }
-
 .post-img2 {
-  height: 200px;
+  height: 250px;
+}
+.post-text-box {
+  padding: 5px 30px 20px;
+}
+.post-text-box2 {
+  padding: 5px 20px 10px;
+}
+.post-event {
+  margin-bottom: 30px;
+  text-align: right;
+  background-color: #efefef;
+  padding: 4px;
+  font-size: 14px;
+}
+.post-event > * {
+  vertical-align: middle;
+  line-height: 30px;
+  margin-right: 4px;
 }
 
 @keyframes animate-pos {

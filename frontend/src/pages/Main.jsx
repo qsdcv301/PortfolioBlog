@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { ko } from "date-fns/locale";
 import { boxShadow, padding16, borders } from "../style/style";
 import Banner from "../components/Banner";
+import { FcLike, FcApproval, FcCalendar } from "react-icons/fc";
 
 import axios from "axios";
 
@@ -23,13 +26,17 @@ const Main = () => {
   };
 
   /*
-  yyyy 연도, MM월, dd 일, EEEE 요일, a(오전/오후)  h:m (시간,분)
+    yyyy 연도,  MM 월, dd 일, EEEE 요일(간략히 하려면 E), a(오전/오후) h:m (시간, 분)
   */
   const formatDate = (dt) => {
     const date = new Date(dt);
-    return format(date, "yyyy년 MM월 dd일 a h:m");
+    return format(date, "yyyy년 MM월 dd일 EEEE a h:m", { locale: ko });
   };
 
+  const formatDate2 = (dt) => {
+    const date = new Date(dt);
+    return format(date, "MM월 dd일 EEEE a h", { locale: ko });
+  };
   return (
     <Container style={{ ...boxShadow, ...padding16, ...borders }}>
       <Banner />
@@ -38,20 +45,31 @@ const Main = () => {
           index === 0 ? (
             <Col md="12" key={index}>
               {post.firstImg && (
-                <Image
-                  src={`upload/images/${post.ntime}/${post.firstImg}`}
-                  fluid
-                  alt={post.title}
-                  className="post-img"
-                />
+                <Link to={`/view/${post.post}`}>
+                  <Image
+                    src={`upload/images/${post.ntime}/${post.firstImg}`}
+                    className="post-img"
+                    alt={post.title}
+                  />
+                </Link>
               )}
               <div className="post-text-box">
-                <h3>{post.title}</h3>
                 <div className="post-event">
-                  <span className="bold mx-2"></span>
-                  <span className="bold text-danger mx-2"></span>
-                  <span className="ps-4">{post.createDate}</span>
+                  <span className="bold mx-4">
+                    {" "}
+                    <FcLike /> {post.empathy}{" "}
+                  </span>
+                  <span className="bold text-danger mx-4">
+                    <FcApproval /> {post.hit}
+                  </span>
+                  <span className="ps-4">
+                    {" "}
+                    <FcCalendar /> {formatDate(post.createDate)}{" "}
+                  </span>
                 </div>
+                <h3>
+                  <Link to={`/view/${post.post}`}>{post.title}</Link>
+                </h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: removeImgTags(post.content),
@@ -62,15 +80,31 @@ const Main = () => {
           ) : (
             <Col md="6" key={index}>
               {post.firstImg && (
-                <Image
-                  src={`upload/images/${post.ntime}/${post.firstImg}`}
-                  fluid
-                  alt={post.title}
-                  className="post-img2"
-                />
+                <Link to={`/view/${post.post}`}>
+                  <Image
+                    src={`upload/images/${post.ntime}/${post.firstImg}`}
+                    className="post-img2"
+                    alt={post.title}
+                  />
+                </Link>
               )}
               <div className="post-text-box2">
-                <h3>{post.title}</h3>
+                <div className="post-event">
+                  <span className="bold mx-4">
+                    {" "}
+                    <FcLike /> {post.empathy}{" "}
+                  </span>
+                  <span className="bold text-danger mx-4">
+                    <FcApproval /> {post.hit}
+                  </span>
+                  <span className="ps-4">
+                    {" "}
+                    <FcCalendar /> {formatDate2(post.createDate)}{" "}
+                  </span>
+                </div>
+                <h3>
+                  <Link to={`/view/${post.post}`}>{post.title}</Link>
+                </h3>
                 <div
                   dangerouslySetInnerHTML={{
                     __html: removeImgTags(post.content),
