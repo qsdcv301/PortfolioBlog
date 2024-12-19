@@ -22,7 +22,7 @@ public class PostController {
 
     //세부내용보기
     @GetMapping("/{post}")
-    public Post getPostByPost(@PathVariable String post){
+    public Post getPostByPost(@PathVariable(name = "post") String post){
         return postServiceImpl.getPostByPost(post).orElseThrow(()->new RuntimeException("내용이 없습니다."));
     }
 

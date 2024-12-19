@@ -18,7 +18,7 @@ public class PostComment {
     @Column(name = "post_id")
     private Long postId;
     private String username;
-    private String userEmail;
+    private String useremail;
     private String social;
 
     @Column(columnDefinition = "TEXT")

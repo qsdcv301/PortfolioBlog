@@ -16,7 +16,7 @@ public class PostCommentController {
 
     //목록
     @GetMapping("{postId}")
-    public List<PostComment> getAllPostsComments(@PathVariable long postId){
+    public List<PostComment> getAllPostsComments(@PathVariable(name = "postId") long postId){
         return postCommentService.findAllByPostId(postId);
     }
 
