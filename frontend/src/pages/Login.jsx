@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 
 import { useGoogleLogin } from "@react-oauth/google";
 import KakaoLogin from "react-kakao-login";
-import NaverLogin from "react-naver-login";
+// import NaverLogin from "react-naver-login";
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -40,11 +40,12 @@ const Login = () => {
     },
   });
 
+  /**
+   * email, name, id, nickname, profile_image, accessToken
+   */
   //네이버 로그인
+  /*
   const handleNaverSuccess = (naverUser) => {
-    /**
-     * email, name, id, nickname, profile_image, accessToken
-     */
     const { email, name, profile_image, accessToken } = naverUser;
     const userInfo = {
       email,
@@ -55,7 +56,7 @@ const Login = () => {
     };
     login({ userInfo, token: accessToken });
   };
-
+*/
   const handleNaverFailure = (error) => {
     console.error("네이버 로그인 에러 ", error);
   };
@@ -82,8 +83,7 @@ const Login = () => {
     <>
       {/* 구글 로그인 버튼 */}
       <button onClick={() => googleLogin()}>구글로그인</button>
-
-      <NaverLogin
+      {/* <NaverLogin
         clientId={process.env.REACT_APP_NAVER_CLIENT_ID}
         callbackUrl="http://localhost:3000"
         onSuccess={handleNaverSuccess}
@@ -97,8 +97,7 @@ const Login = () => {
             네이버로그인
           </button>
         )}
-      />
-
+      /> */}
       <KakaoLogin
         token={process.env.REACT_APP_KAKAO_CLIENT_ID}
         onSuccess={handleKakaoSuccess}

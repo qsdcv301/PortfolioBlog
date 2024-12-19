@@ -30,7 +30,11 @@ const View = () => {
       <div dangerouslySetInnerHTML={{ __html: data.content }} />
       <br />
 
-      {isAuthenticated ? <CommentWrite user={user} /> : <Login />}
+      {isAuthenticated ? (
+        <CommentWrite postId={data.id} post={post} />
+      ) : (
+        <Login />
+      )}
     </Container>
   );
 };

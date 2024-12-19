@@ -15,9 +15,10 @@ public class PostComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long post_id;
+    @Column(name = "post_id")
+    private Long postId;
     private String username;
-    private String useremail;
+    private String userEmail;
     private String social;
 
     @Column(columnDefinition = "TEXT")

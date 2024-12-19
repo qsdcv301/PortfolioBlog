@@ -22,4 +22,12 @@ public class PostCommentServiceImpl implements PostCommentService {
     public PostComment create(PostComment postComment){
         return postCommentRepository.save(postComment);
     }
+
+    @Override
+    public void deleteById(long postId){
+        if(postCommentRepository.existsById(postId)){
+            postCommentRepository.deleteById(postId);
+        }
+    }
+
 }

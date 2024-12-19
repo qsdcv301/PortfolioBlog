@@ -19,7 +19,7 @@ const RAside = () => {
       <Card style={{ ...boxShadow, ...padding16 }} className="mb-4">
         <Card.Img variant="top" src="images/me.jpg" />
         <Card.Body>
-          <Card.Title>Developer Andrea Lee</Card.Title>
+          <Card.Title>Developer Taehyeon Kim</Card.Title>
           <Card.Text>
             Hello, I'm Taehyeon. A Content writer, Developer. Working as a
             Content ...
