@@ -13,7 +13,7 @@ const Git = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.get("/users/musecom2/repos");
+      const res = await api.get("/users/qsdcv301/repos");
       //console.dir(res.data);
       setRepo(res.data);
 
