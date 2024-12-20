@@ -21,19 +21,20 @@ import View from "./pages/View";
 
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 
-/** 관리자 */
+/** 관리자 전용 페이지 */
 import PostWrite from "./pages/admin/PostWrite";
 
 /** 인증 상태에 따라 라우팅 제어 */
 const PrivateRoute = ({ children, adminOnly = false }) => {
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { isAuthenticated, role } = useContext(AuthContext);
 
   if (!isAuthenticated) {
-    //로그인 안되어 있으면 로그인 페이지
+    // 로그인하지 않은 경우 로그인 페이지로 리디렉션
     return <Navigate to="/login" replace />;
   }
 
-  if (adminOnly && user.role === "admin") {
+  if (adminOnly && role !== "admin") {
+    // 관리자가 아닌 경우 메인 페이지로 리디렉션
     return <Navigate to="/" replace />;
   }
 
@@ -48,13 +49,18 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Layout />}>
+              {/* 메인 페이지 */}
               <Route index element={<Main />} />
+
+              {/* 일반 라우트 */}
               <Route path="post" element={<Post />} />
               <Route path="about" element={<About />} />
               <Route path="git" element={<Git />} />
               <Route path="contact" element={<Contact />} />
               <Route path="view/:post" element={<View />} />
               <Route path="login" element={<Login />} />
+
+              {/* 관리자 전용 라우트 */}
               <Route
                 path="postwrite"
                 element={

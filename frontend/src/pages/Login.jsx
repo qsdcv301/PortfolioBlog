@@ -3,12 +3,12 @@ import { AuthContext } from "../context/AuthContext";
 
 import { useGoogleLogin } from "@react-oauth/google";
 import KakaoLogin from "react-kakao-login";
-// import NaverLogin from "react-naver-login";
+// import NaverLogin from 'react-naver-login';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
 
-  //구글 로그인
+  // 구글 로그인
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -28,22 +28,19 @@ const Login = () => {
           name: profile.name,
           social: "google",
           picture: profile.picture,
-          role: profile.email === "qsdcv301@gmail.com" ? "admin" : "user", // 역할 설정
+          role: profile.email === "rlaxoguszld@naver.com" ? "admin" : "user", // 역할 설정
         };
         login({ userInfo, token: tokenResponse.access_token });
       } catch (error) {
-        console.error(error);
+        console.error("구글 로그인 에러:", error);
       }
     },
     onError: (error) => {
-      console.error("구글로그인 에러 : ", error);
+      console.error("구글 로그인 에러:", error);
     },
   });
 
-  /**
-   * email, name, id, nickname, profile_image, accessToken
-   */
-  //네이버 로그인
+  // 네이버 로그인
   /*
   const handleNaverSuccess = (naverUser) => {
     const { email, name, profile_image, accessToken } = naverUser;
@@ -56,55 +53,60 @@ const Login = () => {
     };
     login({ userInfo, token: accessToken });
   };
-*/
-  const handleNaverFailure = (error) => {
-    console.error("네이버 로그인 에러 ", error);
-  };
 
-  //카카오 로그인
+  const handleNaverFailure = (error) => {
+    console.error("네이버 로그인 에러:", error);
+  };
+  */
+
+  // 카카오 로그인
   const handleKakaoSuccess = (response) => {
-    const { kakao_account } = response.profile || {};
+    const kakaoAccount = response?.profile?.kakao_account || {};
     const accessToken = response.response.access_token;
     const userInfo = {
-      email: kakao_account.email,
-      name: kakao_account.profile?.nickname,
+      email: kakaoAccount.email,
+      name: kakaoAccount.profile?.nickname,
       social: "kakao",
-      picture: kakao_account.profile?.profile_image_url,
+      picture: kakaoAccount.profile?.profile_image_url,
       role: "user",
     };
     login({ userInfo, token: accessToken });
   };
 
   const handleKakaoFailure = (error) => {
-    console.error("카카오 로그인 에러 :", error);
+    console.error("카카오 로그인 에러:", error);
   };
 
   return (
     <>
       {/* 구글 로그인 버튼 */}
-      <button onClick={() => googleLogin()}>구글로그인</button>
-      {/* <NaverLogin
-        clientId={process.env.REACT_APP_NAVER_CLIENT_ID}
-        callbackUrl="http://localhost:3000"
-        onSuccess={handleNaverSuccess}
-        onFailure={handleNaverFailure}
-        render={(props) => (
-          <button
-            onClick={() => {
-              window.open(props.loginUrl, "_blank", "width=400, height=500");
-            }}
-          >
-            네이버로그인
-          </button>
-        )}
-      /> */}
+      <button onClick={googleLogin}>구글 로그인</button>
+
+      {/**
+       * <NaverLogin
+       *   clientId={process.env.REACT_APP_NAVER_CLIENT_ID}
+       *   callbackUrl="http://localhost:3000"
+       *   onSuccess={handleNaverSuccess}
+       *   onFailure={handleNaverFailure}
+       *   render={(props) => (
+       *     <button
+       *       onClick={() => {
+       *         window.open(props.loginUrl, "_blank", "width=400, height=500");
+       *       }}
+       *     >
+       *       네이버 로그인
+       *     </button>
+       *   )}
+       * />
+       */}
+
       <KakaoLogin
         token={process.env.REACT_APP_KAKAO_CLIENT_ID}
         onSuccess={handleKakaoSuccess}
         onFail={handleKakaoFailure}
-        onLogout={console.info}
+        onLogout={() => console.info("카카오 로그아웃 성공")}
         render={(props) => (
-          <button onClick={props.onClick}>카카오로그인</button>
+          <button onClick={props.onClick}>카카오 로그인</button>
         )}
       />
     </>

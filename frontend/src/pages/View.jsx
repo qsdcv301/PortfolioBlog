@@ -54,6 +54,7 @@ const View = () => {
           </ListGroup.Item>
         ))}
       </ListGroup>
+
       {isAuthenticated ? (
         <CommentWrite postId={data.id} post={post} />
       ) : (

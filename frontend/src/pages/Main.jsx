@@ -6,7 +6,6 @@ import { ko } from "date-fns/locale";
 import { boxShadow, padding16, borders } from "../style/style";
 import Banner from "../components/Banner";
 import { FcLike, FcApproval, FcCalendar } from "react-icons/fc";
-
 import axios from "axios";
 
 const Main = () => {
@@ -40,6 +39,7 @@ const Main = () => {
   return (
     <Container style={{ ...boxShadow, ...padding16, ...borders }}>
       <Banner />
+
       <Row className="mt-4">
         {posts.map((post, index) =>
           index === 0 ? (

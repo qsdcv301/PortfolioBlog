@@ -21,8 +21,8 @@ const RAside = () => {
         <Card.Body>
           <Card.Title>Developer Taehyeon Kim</Card.Title>
           <Card.Text>
-            Hello, I'm Taehyeon. A Content writer, Developer. Working as a
-            Content ...
+            Hello, I'm Andrea. A Content writer, Developer. Working as a Content
+            ...
           </Card.Text>
         </Card.Body>
         <Row>

@@ -1,21 +1,24 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Container, Row, Col } from "react-bootstrap";
 import Wysiwyg2 from "../components/Write/Wysiwyg2";
+import { Container, Row, Col } from "react-bootstrap";
+
 import axios from "axios";
 
 const CommentWrite = ({ postId, post }) => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const commentData = {
       postId: postId,
       username: user.name,
       useremail: user.email,
-      cocial: user.cocial,
+      social: user.social,
       comment,
     };
+    console.log(commentData);
     try {
       await axios.post("http://localhost:8080/api/posts/comment", commentData, {
         headers: {
@@ -37,10 +40,11 @@ const CommentWrite = ({ postId, post }) => {
             이름
           </Col>
           <Col md="10">{user.name}</Col>
+
           <Col md="2" className="mt-3 text-end">
             내용
           </Col>
-          <Col md="10" className="mt-3 comment-wysiwyg">
+          <Col md="10" className="mt-3 coment-wysiwyg">
             <Wysiwyg2 content={comment} setContent={setComment} />
           </Col>
         </Row>
